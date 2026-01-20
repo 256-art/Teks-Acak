@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pembuat Teks Acak</title>
+  <style>
+    {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #74ebd5, #acb6e5);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        color: #333;
+    }
+
+    .container {
+        background-color: #fff;
+        border-radius: 16px;
+        padding: 30px 40px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .container h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #222;
+    }
+
+    .slider-container {
+        margin: 20px 0;
+    }
+
+    .slider-container label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+
+    .output {
+        font-weight: bold;
+        font-size: 18px;
+        margin-left: 10px;
+        color: #0077cc;
+    }
+
+    input[type="range"] {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #0077cc;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #005fa3;
+    }
+
+    .random-text {
+        margin-top: 25px;
+        padding: 12px 16px;
+        border: 2px dashed #0077cc;
+        background-color: #eef6fc;
+        border-radius: 10px;
+        font-size: 18px;
+        word-break: break-word;
+        font-weight: bold;
+        color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Pembuat Teks Acak</h2>
+    <div class="slider-container">
+      <label for="lengthRange">Pilih Jumlah Karakter :</label>
+      <input type="range" id="lengthRange" min="4" max="24" value="4" oninput="updateLengthValue(this.value)">
+      <span id="lengthValue" class="output">4</span>
+    </div>
+    <button onclick="generateRandomText()">Buat Teks Acak</button>
+    <div id="randomText" class="random-text"></div>
+  </div>
+
+  <script>
+    function updateLengthValue(value) {
+        document.getElementById('lengthValue').textContent = value;
+    }
+
+    function generateRandomText() {
+        const length = parseInt(document.getElementById('lengthRange').value);
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        document.getElementById('randomText').textContent = result;
+    }
+  </script>
+</body>
+</html>
